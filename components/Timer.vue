@@ -88,7 +88,13 @@ export default {
       this.minutes = this.settings.m
       this.seconds = this.settings.s
     },
+    fixTimer() {
+      if (!this.hours)   this.hours   = 0
+      if (!this.minutes) this.minutes = 0
+      if (!this.seconds) this.seconds = 0
+    },
     runTimer () {
+      this.fixTimer()
       if (!this.paused) {
         if (this.seconds === 0) {
           if (this.minutes === 0) {
