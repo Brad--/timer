@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     start () {
+      this.fixTimer()
       if (this.isDone) return
 
       this.settings = this.currentSetting
@@ -94,7 +95,6 @@ export default {
       if (!this.seconds) this.seconds = 0
     },
     runTimer () {
-      this.fixTimer()
       if (!this.paused) {
         if (this.seconds === 0) {
           if (this.minutes === 0) {
