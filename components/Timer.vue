@@ -1,10 +1,15 @@
 <template>
   <div class="container">
     <div class="input-group">
-      <input v-model.number="hours" :class="hoursClass" />h
-      <input v-model.number="minutes" :class="minutesClass" />m
-      <input v-model.number="seconds" :class="secondsClass" />s
-      
+      <section class="numbers">
+        <input v-model.number="hours" :class="hoursClass" id="hours" />
+        <label for="hours">h</label>
+        <!-- <Number v-model="hours" label="hours">h</Number> -->
+        <input v-model.number="minutes" :class="minutesClass" id="minutes" />
+        <label for="minutes">m</label>
+        <input v-model.number="seconds" :class="secondsClass" id="seconds" />
+        <label for="seconds">s</label>
+      </section>
       <transition name="button-fade" mode="out-in">
         <div v-if="!started" class="button-group">
           <button @click="start">Start</button>
@@ -139,7 +144,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   display: flex;
   align-items: center;
@@ -147,10 +152,16 @@ export default {
   width: 70%;
 }
 
+input,
 .input-group {
-  position: absolute;
   font-size: 8rem;
+}
 
+.input-group {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
   z-index: 5;
 }
 
@@ -182,17 +193,34 @@ button:hover {
 }
 
 input {
-  font-size: 8rem;
   width: 10rem;
   border: none;
   background-color: inherit;
   border-bottom: .25rem solid black;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
-input:focus-visible {
-  outline: none;
-  border: none;
-  background-color: inherit;
-  border-bottom: .25rem solid black;
+/* Mobile styles */
+@media (min-width: 20em) and (max-width: 30em) {
+  .numbers {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1rem;
+  }
+
+  label {
+    padding-bottom: 2rem;
+  }
+
+  input {
+    text-align: center;
+    font-size: 6rem;
+    width: 25%;
+    border-bottom: .125rem solid black;
+  }
 }
 </style>
